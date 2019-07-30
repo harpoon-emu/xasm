@@ -11,7 +11,7 @@ set(Xasm_VERSION
 
 project(Xasm LANGUAGES CXX C VERSION ${Xasm_VERSION})
 
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED COMPONENTS program_options)
 
 add_executable(xasm
 	src/main.cc
@@ -21,6 +21,12 @@ target_compile_features(xasm
 	PRIVATE
 		cxx_lambdas
 		cxx_range_for
+)
+
+target_link_libraries(xasm
+	PRIVATE
+		Boost::boost
+		Boost::program_options
 )
 
 install(TARGETS xasm
