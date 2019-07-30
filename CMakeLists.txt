@@ -1,40 +1,28 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.9)
 
-set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
-set(CMAKE_DISABLE_SOURCE_CHANGES  ON)
-if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
-  message(SEND_ERROR "In-source builds are not allowed.")
-endif ()
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
 
-set(CMAKE_COLOR_MAKEFILE   ON)
+set(Xasm_MAJOR_VERSION 0)
+set(Xasm_MINOR_VERSION 1)
+set(Xasm_PATCH_VERSION 0)
+set(Xasm_VERSION
+  ${Xasm_MAJOR_VERSION}.${Xasm_MINOR_VERSION}.${Xasm_PATCH_VERSION})
 
-project(xasm)
+project(Xasm LANGUAGES CXX C VERSION ${Xasm_VERSION})
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-	set(CMAKE_COMMON_CXX_FLAGS
-		-std=c++17
-		-Werror
-		-Weverything
-		-Wno-c++98-compat
-		-Wno-c++98-compat-pedantic
-		-Wno-padded
-		-Wno-redundant-parens
-		-Wno-extra-semi-stmt
-		-Wno-unknown-warning-option
-		)
-endif()
+find_package(Boost REQUIRED)
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-	set(CMAKE_COMMON_CXX_FLAGS
-		-std=c++17
-		-Wall
-		-Werror
-		)
-endif()
+add_executable(xasm
+	src/main.cc
+)
 
-string(REGEX REPLACE ";" " " CMAKE_COMMON_CXX_FLAGS "${CMAKE_COMMON_CXX_FLAGS}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_COMMON_CXX_FLAGS}")
+target_compile_features(xasm
+	PRIVATE
+		cxx_lambdas
+		cxx_range_for
+)
 
-file(GLOB_RECURSE CC_FILES src/*.cc)
-
-add_executable(xasm ${CC_FILES})
+install(TARGETS xasm
+	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
