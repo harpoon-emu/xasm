@@ -15,6 +15,60 @@ find_package(Boost REQUIRED COMPONENTS program_options)
 
 add_executable(xasm
 	src/main.cc
+	src/parser/ast/ast.hh
+	src/parser/ast/instruction.hh
+	src/parser/base.hh
+	src/parser/parser.cc
+	src/parser/parser.hh
+	src/parser/xasm/ast_adapted/ast_adapted.hh
+	src/parser/xasm/ast_adapted/instruction.hh
+	src/parser/xasm/config.hh
+	src/parser/xasm/parser.cc
+	src/parser/xasm/parser.hh
+	src/parser/xasm/rules/code.cc
+	src/parser/xasm/rules/code.hh
+	src/parser/xasm/rules/instruction/absolute.cc
+	src/parser/xasm/rules/instruction/absolute.hh
+	src/parser/xasm/rules/instruction/absolute_x.cc
+	src/parser/xasm/rules/instruction/absolute_x.hh
+	src/parser/xasm/rules/instruction/absolute_y.cc
+	src/parser/xasm/rules/instruction/absolute_y.hh
+	src/parser/xasm/rules/instruction/accumulator.cc
+	src/parser/xasm/rules/instruction/accumulator.hh
+	src/parser/xasm/rules/instruction/immediate.cc
+	src/parser/xasm/rules/instruction/immediate.hh
+	src/parser/xasm/rules/instruction/implied.cc
+	src/parser/xasm/rules/instruction/implied.hh
+	src/parser/xasm/rules/instruction/indirect.cc
+	src/parser/xasm/rules/instruction/indirect.hh
+	src/parser/xasm/rules/instruction/indirect_y.cc
+	src/parser/xasm/rules/instruction/indirect_y.hh
+	src/parser/xasm/rules/instruction/instruction.cc
+	src/parser/xasm/rules/instruction/instruction.hh
+	src/parser/xasm/rules/instruction/nullary.cc
+	src/parser/xasm/rules/instruction/nullary.hh
+	src/parser/xasm/rules/instruction/operand.cc
+	src/parser/xasm/rules/instruction/operand.hh
+	src/parser/xasm/rules/instruction/relative.cc
+	src/parser/xasm/rules/instruction/relative.hh
+	src/parser/xasm/rules/instruction/unary.cc
+	src/parser/xasm/rules/instruction/unary.hh
+	src/parser/xasm/rules/instruction/x_indirect.cc
+	src/parser/xasm/rules/instruction/x_indirect.hh
+	src/parser/xasm/rules/instruction/zeropage.cc
+	src/parser/xasm/rules/instruction/zeropage.hh
+	src/parser/xasm/rules/instruction/zeropage_x.cc
+	src/parser/xasm/rules/instruction/zeropage_x.hh
+	src/parser/xasm/rules/instruction/zeropage_y.cc
+	src/parser/xasm/rules/instruction/zeropage_y.hh
+	src/parser/xasm/rules/source.cc
+	src/parser/xasm/rules/source.hh
+	src/parser/xasm/rules/token.cc
+	src/parser/xasm/rules/token.hh
+	src/object/object.cc
+	src/object/object.hh
+	src/object/segment.cc
+	src/object/segment.hh
 )
 
 target_compile_features(xasm

@@ -1,8 +1,10 @@
+#include "parser/parser.hh"
+
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <string>
 
-static void parse_command_line(boost::program_options::variables_map vm, int argc, char **argv) {
+static void parse_command_line(boost::program_options::variables_map &vm, int argc, char **argv) {
 	boost::program_options::options_description desc("Allowed options");
 	boost::program_options::positional_options_description p_desc;
 
@@ -28,6 +30,9 @@ int main(int argc, char **argv) {
 	try {
 		boost::program_options::variables_map vm;
 		parse_command_line(vm, argc, argv);
+
+		xasm::parser::parser parser(vm["input-file"].as<std::string>());
+		parser.parse();
 	} catch (std::exception &e) {
 		std::cerr << "error: " << e.what() << std::endl;
 	} catch (...) {
