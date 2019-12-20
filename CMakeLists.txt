@@ -11,7 +11,7 @@ project(Xasm LANGUAGES CXX C VERSION ${Xasm_VERSION})
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
-find_package(Boost REQUIRED COMPONENTS program_options)
+find_package(Boost 1.69.0 REQUIRED COMPONENTS program_options)
 
 add_executable(xasm
 	src/main.cc
