@@ -1,3 +1,3 @@
 # xasm
 
-[![Build Status](https://circleci.com/github/harpoon-emu/xasm.svg?style=svg)](<LINK>)
+[![Build Status](https://circleci.com/gh/harpoon-emu/xasm/tree/master.svg?style=svg)](https://circleci.com/gh/harpoon-emu/xasm/tree/master)
