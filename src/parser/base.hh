@@ -1,7 +1,7 @@
 #ifndef XASM_PARSER_BASE_HH
 #define XASM_PARSER_BASE_HH
 
-#include "ast/source.hh"
+#include "../ast/source.hh"
 
 #include <string>
 

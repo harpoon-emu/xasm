@@ -1,7 +1,7 @@
 #ifndef XASM_PARSER_XASM_RULES_SOURCE_HH
 #define XASM_PARSER_XASM_RULES_SOURCE_HH
 
-#include "../../ast/source.hh"
+#include "../../../ast/source.hh"
 
 #include <boost/spirit/home/x3.hpp>
 #include <string>

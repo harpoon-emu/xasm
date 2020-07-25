@@ -1,12 +1,11 @@
-#ifndef XASM_PARSER_AST_INSTRUCTION_HH
-#define XASM_PARSER_AST_INSTRUCTION_HH
+#ifndef XASM_AST_INSTRUCTION_HH
+#define XASM_AST_INSTRUCTION_HH
 
 #include <boost/fusion/include/io.hpp>
 #include <boost/variant.hpp>
 #include <cstdint>
 
 namespace xasm {
-namespace parser {
 namespace ast {
 namespace instruction {
 
@@ -49,7 +48,6 @@ using boost::fusion::operator<<;
 
 } // namespace instruction
 } // namespace ast
-} // namespace parser
 } // namespace xasm
 
 #endif

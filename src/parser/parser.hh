@@ -1,7 +1,7 @@
 #ifndef XASM_PARSER_PARSER_HH
 #define XASM_PARSER_PARSER_HH
 
-#include "ast/source.hh"
+#include "../ast/source.hh"
 
 #include <string>
 
@@ -16,6 +16,8 @@ public:
 
 private:
 	std::string _file_name{};
+
+	ast::source _ast{};
 };
 
 } // namespace parser
