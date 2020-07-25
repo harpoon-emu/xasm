@@ -14,9 +14,11 @@ include(CMakePackageConfigHelpers)
 find_package(Boost 1.69.0 REQUIRED COMPONENTS program_options)
 
 add_executable(xasm
+	src/ast/ast.hh
+	src/ast/code.hh
+	src/ast/instruction.hh
+	src/ast/source.hh
 	src/main.cc
-	src/parser/ast/ast.hh
-	src/parser/ast/instruction.hh
 	src/parser/base.hh
 	src/parser/parser.cc
 	src/parser/parser.hh

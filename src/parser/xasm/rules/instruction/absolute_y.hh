@@ -1,7 +1,7 @@
 #ifndef XASM_PARSER_XASM_RULES_INSTRUCTION_ABSOLUTE_Y_HH
 #define XASM_PARSER_XASM_RULES_INSTRUCTION_ABSOLUTE_Y_HH
 
-#include "../../../ast/instruction.hh"
+#include "../../../../ast/instruction.hh"
 
 #include <boost/spirit/home/x3.hpp>
 
