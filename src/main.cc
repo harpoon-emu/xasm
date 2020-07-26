@@ -1,3 +1,5 @@
+#include "ast/ast.hh"
+#include "emitter/bin/emitter.hh"
 #include "parser/parser.hh"
 
 #include <boost/program_options.hpp>
@@ -11,7 +13,10 @@ static void parse_command_line(boost::program_options::variables_map &vm, int ar
 	p_desc.add("input-file", 1);
 
 	desc.add_options()("help,h", "produce help message");
-	desc.add_options()("input-file,f", boost::program_options::value<std::string>(), "input file");
+	desc.add_options()("input,f", boost::program_options::value<std::string>(), "input file");
+	desc.add_options()("output,o",
+	                   boost::program_options::value<std::string>()->default_value("a.out"),
+	                   "output file");
 
 	boost::program_options::store(boost::program_options::command_line_parser(argc, argv)
 	                                  .options(desc)
@@ -31,8 +36,12 @@ int main(int argc, char **argv) {
 		boost::program_options::variables_map vm;
 		parse_command_line(vm, argc, argv);
 
-		xasm::parser::parser parser(vm["input-file"].as<std::string>());
-		parser.parse();
+		xasm::ast::source ast;
+		xasm::parser::parser parser(vm["input"].as<std::string>());
+		xasm::emitter::bin::emitter emitter(vm["output"].as<std::string>());
+
+		parser.parse(ast);
+		emitter.emit(ast);
 	} catch (std::exception &e) {
 		std::cerr << "error: " << e.what() << std::endl;
 	} catch (...) {
