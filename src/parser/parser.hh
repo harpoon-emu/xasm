@@ -12,12 +12,10 @@ class parser {
 public:
 	parser(const std::string &file_name);
 
-	void parse();
+	void parse(ast::source &ast);
 
 private:
 	std::string _file_name{};
-
-	ast::source _ast{};
 };
 
 } // namespace parser

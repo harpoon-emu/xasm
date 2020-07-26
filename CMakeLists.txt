@@ -18,6 +18,10 @@ add_executable(xasm
 	src/ast/code.hh
 	src/ast/instruction.hh
 	src/ast/source.hh
+	src/emitter/bin/emitter.cc
+	src/emitter/bin/emitter.hh
+	src/emitter/emitter.cc
+	src/emitter/emitter.hh
 	src/main.cc
 	src/parser/base.hh
 	src/parser/parser.cc
