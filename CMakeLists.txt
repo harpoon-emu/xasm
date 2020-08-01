@@ -8,6 +8,8 @@ set(Xasm_VERSION
 
 project(Xasm LANGUAGES CXX C VERSION ${Xasm_VERSION})
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
@@ -17,6 +19,7 @@ add_executable(xasm
 	src/ast/ast.hh
 	src/ast/code.hh
 	src/ast/instruction.hh
+	src/ast/label.hh
 	src/ast/source.hh
 	src/emitter/bin/emitter.cc
 	src/emitter/bin/emitter.hh
@@ -27,6 +30,7 @@ add_executable(xasm
 	src/parser/parser.cc
 	src/parser/parser.hh
 	src/parser/xasm/ast_adapted/ast_adapted.hh
+	src/parser/xasm/ast_adapted/code.hh
 	src/parser/xasm/ast_adapted/instruction.hh
 	src/parser/xasm/config.hh
 	src/parser/xasm/parser.cc
@@ -67,6 +71,8 @@ add_executable(xasm
 	src/parser/xasm/rules/instruction/zeropage_x.hh
 	src/parser/xasm/rules/instruction/zeropage_y.cc
 	src/parser/xasm/rules/instruction/zeropage_y.hh
+	src/parser/xasm/rules/label.hh
+	src/parser/xasm/rules/label.cc
 	src/parser/xasm/rules/source.cc
 	src/parser/xasm/rules/source.hh
 	src/parser/xasm/rules/token.cc

@@ -15,7 +15,7 @@ namespace instruction {
 
 namespace x3 = boost::spirit::x3;
 
-static auto const instruction_def = -token_sep >> (nullary | unary_byte | unary_word) >> -token_sep;
+static auto const instruction_def = (nullary | unary_byte | unary_word);
 BOOST_SPIRIT_DEFINE(instruction);
 BOOST_SPIRIT_INSTANTIATE(instruction_type, config::iterator_type, config::context_type);
 

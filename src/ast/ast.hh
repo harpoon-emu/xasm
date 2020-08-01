@@ -3,6 +3,7 @@
 
 #include "code.hh"
 #include "instruction.hh"
+#include "label.hh"
 #include "source.hh"
 
 #endif

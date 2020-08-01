@@ -11,18 +11,21 @@ emitter::emitter(const std::string &file)
 
 emitter::~emitter() {}
 
-void emitter::emit(const ast::instruction::nullary &ast) {
+emitter::offset_t emitter::emit(const ast::instruction::nullary &ast) {
 	_emit8(ast.opcode);
+	return 1;
 }
 
-void emitter::emit(const ast::instruction::unary_byte &ast) {
+emitter::offset_t emitter::emit(const ast::instruction::unary_byte &ast) {
 	_emit8(ast.opcode);
 	_emit8(ast.operand);
+	return 2;
 }
 
-void emitter::emit(const ast::instruction::unary_word &ast) {
+emitter::offset_t emitter::emit(const ast::instruction::unary_word &ast) {
 	_emit8(ast.opcode);
 	_emit16(ast.operand);
+	return 3;
 }
 
 void emitter::_emit8(std::uint8_t v) {
