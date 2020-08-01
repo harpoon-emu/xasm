@@ -18,9 +18,10 @@ public:
 
 	using xasm::emitter::emitter::emit;
 
-	virtual void emit(const ast::instruction::nullary &ast) override;
-	virtual void emit(const ast::instruction::unary_byte &ast) override;
-	virtual void emit(const ast::instruction::unary_word &ast) override;
+	virtual offset_t emit(const ast::instruction::nullary &ast) override;
+	virtual offset_t emit(const ast::instruction::unary_byte &ast) override;
+	virtual offset_t emit(const ast::instruction::unary_word &ast) override;
+
 
 private:
 	void _emit8(std::uint8_t v);

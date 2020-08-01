@@ -11,19 +11,25 @@ emitter::emitter() {}
 
 emitter::~emitter() {}
 
+void emitter::reset() {
+	_current = 0;
+	_labels.clear();
+}
+
 void emitter::emit(const ast::source &ast) {
+	reset();
 	for (auto i : ast) {
 		emit(i);
 	}
 }
 
-class code_visitor : public boost::static_visitor<> {
+class instruction_visitor : public boost::static_visitor<> {
 public:
-	code_visitor(emitter &e) : _emitter{e} {}
+	instruction_visitor(emitter &e) : _emitter{e} {}
 
 	template<typename T>
 	void operator()(const T &x) const {
-		_emitter.emit(x);
+		_emitter.offset(_emitter.emit(x));
 	}
 
 private:
@@ -31,10 +37,21 @@ private:
 };
 
 void emitter::emit(const ast::code &ast) {
-	code_visitor v(*this);
+	instruction_visitor v(*this);
 	for (auto i : ast) {
-		boost::apply_visitor(v, i);
+		if (!i.label.empty()) {
+			emit(i.label);
+		}
+		boost::apply_visitor(v, i.instruction);
 	}
+}
+
+void emitter::emit(const ast::label &ast) {
+	_labels[ast] = _current;
+}
+
+emitter::offset_t emitter::emit(const ast::instruction::empty &ast) {
+	return 0;
 }
 
 } // namespace emitter

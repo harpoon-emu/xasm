@@ -12,6 +12,7 @@ namespace instruction {
 using opcode_t = std::uint16_t;
 
 enum address_mode_t {
+	unknown,
 	accumulator,
 	absolute,
 	absolute_x,
@@ -32,6 +33,13 @@ struct base {
 	opcode_t opcode;
 };
 
+struct empty : public base {
+	empty() {
+		address_mode = unknown;
+		opcode = 0;
+	}
+};
+
 struct nullary : public base {};
 
 template<typename OPERAND_TYPE>
@@ -42,7 +50,7 @@ struct unary : public base {
 struct unary_byte : public unary<std::uint8_t> {};
 struct unary_word : public unary<std::uint16_t> {};
 
-using variant = boost::variant<nullary, unary_byte, unary_word>;
+using variant = boost::variant<empty, nullary, unary_byte, unary_word>;
 
 using boost::fusion::operator<<;
 
